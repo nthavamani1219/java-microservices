@@ -1,4 +1,15 @@
-FROM openjdk:8-jre
-ADD target/shopfront-0.0.1-SNAPSHOT.jar app.jar
+FROM maven:3.9.6-eclipse-temurin-24 AS build
+WORKDIR /app
+
+COPY pom.xml .
+RUN mvn dependency:go-offline
+COPY src ./src
+
+RUN mvn clean package -DskipTests
+
+FROM eclipse-temurin:24-jre-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+
 EXPOSE 8010
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+CMD ["java", "-jar", "/app.jar"] 

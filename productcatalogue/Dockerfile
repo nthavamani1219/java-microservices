@@ -1,5 +1,15 @@
-FROM openjdk:8-jre
-ADD target/productcatalogue-0.0.1-SNAPSHOT.jar app.jar
-ADD product-catalogue.yml app-config.yml
+FROM maven:3.9.6-eclipse-temurin-24 AS build
+WORKDIR /app
+
+COPY pom.xml .
+RUN mvn dependency:go-offline
+COPY src ./src
+
+RUN mvn clean package -DskipTests
+
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+
 EXPOSE 8020
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","app.jar", "server", "app-config.yml"]
+ENTRYPOINT ["java","app.jar", "server", "app-config.yml"]
