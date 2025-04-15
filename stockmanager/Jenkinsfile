@@ -32,7 +32,14 @@ pipeline {
                 sh "docker build -t ${DOCKER_REGISTRY}/${SERVICE_NAME}:${BUILD_NUMBER} ."
             }
         }
-        
+        stage('Scan Docker Image') {
+            steps {
+                sh '''
+                    echo "Scanning image for vulnerabilities..."
+                    trivy image --severity CRITICAL,HIGH ${DOCKER_REGISTRY}/${SERVICE_NAME}:${BUILD_NUMBER}
+                '''
+            }
+        }
         stage('Push Docker Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-registry-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
