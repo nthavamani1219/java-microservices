@@ -14,7 +14,7 @@ pipeline {
         SCANNER_HOME = tool 'SonarQube Scanner 4.7';
 
     }
-     triggers {  // Trigger the job automatically on each push.
+     triggers {  
         GenericTrigger(
             genericVariables: [],
             token: 'mani@12three', 
@@ -103,23 +103,23 @@ pipeline {
     post {
         success {
             mail to: 'n.thavamani@nagarro.com',
-                 subject: "SUCCESS | Deployment Completed for ${JOB_BASE_NAME}",
-                 body: "Hi,\n\n\
-The deployment has been completed for the Jenkins pipeline '${JOB_BASE_NAME}'.\n\n\
-The Application URL and Pipeline details are below.\n\n\
-Status: SUCCESS\n\
-Pipeline: ${JOB_NAME}\n\
-Build No: ${BUILD_NUMBER}\n\"
-                }
+                subject: "SUCCESS | Deployment Completed for ${JOB_BASE_NAME}",
+                body: "Hi,\n\n\
+                The deployment has been completed for the Jenkins pipeline '${JOB_BASE_NAME}'.\n\n\
+                The Application URL and Pipeline details are below.\n\n\
+                Status: SUCCESS\n\
+                Pipeline: ${JOB_NAME}\n\
+                Build No: ${BUILD_NUMBER}\n\n"
+        }
         failure {
             mail to: 'n.thavamani@nagarro.com',
-                 subject: "SUCCESS | Deployment Completed for ${JOB_BASE_NAME}",
-                 body: "Hi,\n\n\
-The deployment has been completed for the Jenkins pipeline '${JOB_BASE_NAME}'.\n\n\
-The Application URL and Pipeline details are below.\n\n\
-Status: SUCCESS\n\
-Pipeline: ${JOB_NAME}\n\
-Build No: ${BUILD_NUMBER}\n\"
+                subject: "Failed | Deployment  Failed for ${JOB_BASE_NAME}",
+                body: "Hi,\n\n\n
+                The deployment has failed for the Jenkins pipeline '${JOB_BASE_NAME}'. Please check, Below are the details.\n\n\n
+                Status: FAILED\n\n
+                Pipeline: ${JOB_NAME}\n\n
+                Build No: ${BUILD_NUMBER}\n\n
+                Build URL: ${BUILD_URL}\n\n\n"
         }
     }
 }
