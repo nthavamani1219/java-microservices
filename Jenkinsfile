@@ -29,7 +29,25 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        
+         stage('SonarQube Analysis') {
+            steps
+            {
+                withSonarQubeEnv("${SONAR}")
+                {
+                    script
+                    {
+                        sh '${MAVEN_HOME}/bin/mvn sonar:sonar'
+                    }
+                }
+            }
+        }
+        stage('Sonar Quality Gate checks') {}
+            steps {
+                script {
+                  waitForQualityGate abortPipeline: true, credentialsId: 'sonar-new-2024'
+                }
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 sh "docker build -t ${DOCKER_REGISTRY}/${SERVICE_NAME}:${BUILD_NUMBER} ."
