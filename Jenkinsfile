@@ -1,6 +1,9 @@
 pipeline {
-    agent any
-    
+     agent
+    {
+        label 'Linux_Slave-new'
+    }
+
     environment {
         DOCKER_REGISTRY = 'your-docker-registry'
         JAVA_HOME = '/usr/lib/jvm/openlogic-openjdk-21-hotspot'
