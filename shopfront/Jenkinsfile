@@ -8,12 +8,10 @@ pipeline {
         KUBE_CONFIG = credentials('kubeconfig')
         DOCKER_USER = thavamani0212
         DOCKER_PASS = Thavamani126@
-        SERVICE_NAME = 'productcatalogue'
-        SERVICE_PORT = '8020'
-        SONAR = 'Sonar'
-        SCANNER_HOME = tool 'SonarQube Scanner 4.7';
         SERVICE_NAME = 'shopfront'
         SERVICE_PORT = '8010'
+        SONAR = 'Sonar'
+        SCANNER_HOME = tool 'SonarQube Scanner 4.7';
     }
     
     stages {
@@ -65,15 +63,26 @@ pipeline {
         }
     }
     
-    post {
-        always {
-            cleanWs()
-        }
+   post {
         success {
-            echo "${SERVICE_NAME} pipeline completed successfully!"
+            mail to: 'n.thavamani@nagarro.com',
+                subject: "SUCCESS | Deployment Completed for ${JOB_BASE_NAME}",
+                body: "Hi,\n\n\
+                The deployment has been completed for the Jenkins pipeline '${JOB_BASE_NAME}'.\n\n\
+                The Application URL and Pipeline details are below.\n\n\
+                Status: SUCCESS\n\
+                Pipeline: ${JOB_NAME}\n\
+                Build No: ${BUILD_NUMBER}\n\n"
         }
         failure {
-            echo "${SERVICE_NAME} pipeline failed!"
+            mail to: 'n.thavamani@nagarro.com',
+            subject: "Failed | Deployment  Failed for ${JOB_BASE_NAME}",
+            body: "Hi,\n\n\n
+            The deployment has failed for the Jenkins pipeline '${JOB_BASE_NAME}'. Please check, Below are the details.\n\n\n
+            Status: FAILED\n\n
+            Pipeline: ${JOB_NAME}\n\n
+            Build No: ${BUILD_NUMBER}\n\n
+            Build URL: ${BUILD_URL}\n\n\n"
         }
     }
 } 
