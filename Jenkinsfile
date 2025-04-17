@@ -8,7 +8,7 @@ pipeline {
         DOCKER_REGISTRY = 'https://hub.docker.com'
         JAVA_HOME = '/usr/lib/jvm/openlogic-openjdk-21-hotspot'
         MAVEN_HOME = '/data/admin/jenkins/.jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven_3.9.2'
-        KUBE_CONFIG = credentials('kubeconfig')
+        // KUBE_CONFIG = credentials('kubeconfig')
         // DOCKER_USER = thavamani0212
         // DOCKER_PASS = Thavamani126@
         DOCKER_SERVICE = 'Docker'
