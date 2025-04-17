@@ -5,7 +5,7 @@ pipeline {
     }
 
     environment {
-        DOCKER_REGISTRY = 'your-docker-registry'
+        DOCKER_REGISTRY = 'https://hub.docker.com'
         JAVA_HOME = '/usr/lib/jvm/openlogic-openjdk-21-hotspot'
         MAVEN_HOME = '/data/admin/jenkins/.jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven_3.9.2'
         KUBE_CONFIG = credentials('kubeconfig')
@@ -37,7 +37,10 @@ pipeline {
         
         stage('Build and Compile the Code') {
             steps {
-                sh 'mvn clean package'
+                script {
+                    sh "${MAVEN_HOME}/bin/mvn clean package"
+               }
+
             }
         }
         stage('SonarQube Analysis') {
