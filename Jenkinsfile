@@ -48,10 +48,16 @@ pipeline {
             {
                 withSonarQubeEnv("${SONAR}")
                 {
-                    script
-                    {
-                        sh '${MAVEN_HOME}/bin/mvn sonar:sonar'
-                    }
+                    sh """
+
+                        ${MAVEN_HOME}/bin/mvn sonar:sonar \
+
+                        -Dsonar.projectKey=productcatalogue \
+
+                        -Dsonar.projectName="Product Catalogue"
+
+                    """
+
                 }
             }
         }
