@@ -54,7 +54,9 @@ pipeline {
 
                         -Dsonar.projectKey=productcatalogue \
 
-                        -Dsonar.projectName="Product Catalogue"
+                        -Dsonar.projectName="Product Catalogue \
+                        
+                        -Dsonar.login=sqa_50fd1180a9b3bab8a6763dfd338c6099e466af21
 
                     """
 
