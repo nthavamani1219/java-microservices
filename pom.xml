@@ -4,7 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>uk.co.danielbryant.djshopping</groupId>
+    <!-- <groupId>uk.co.danielbryant.djshopping</groupId> -->
+    <groupId>org.springframework.samples</groupId>
     <artifactId>productcatalogue</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
@@ -32,10 +33,10 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+                <artifactId>maven-enforcer-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>enforce-java</source>
+                    <target>enforce-java</target>
                 </configuration>
             </plugin>
             <plugin>
