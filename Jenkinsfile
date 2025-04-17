@@ -108,22 +108,12 @@ pipeline {
         success {
             mail to: 'n.thavamani@nagarro.com',
                 subject: "SUCCESS | Deployment Completed for ${JOB_BASE_NAME}",
-                body: "Hi,\n\n\
-                The deployment has been completed for the Jenkins pipeline '${JOB_BASE_NAME}'.\n\n\
-                The Application URL and Pipeline details are below.\n\n\
-                Status: SUCCESS\n\
-                Pipeline: ${JOB_NAME}\n\
-                Build No: ${BUILD_NUMBER}\n\n"
+                body: "Hi,\n\n\nThe deployment has been completed for the Jenkins pipeline '${JOB_BASE_NAME}'.\n\n\nThe Application URL and Pipeline details are below.\n\n\nStatus: SUCCESS\n\nPipeline: ${JOB_NAME}\n\nBuild No: ${BUILD_NUMBER}\n\n"
         }
         failure {
             mail to: 'n.thavamani@nagarro.com',
                 subject: "Failed | Deployment  Failed for ${JOB_BASE_NAME}",
-                body: "Hi,\n\n\n
-                The deployment has failed for the Jenkins pipeline '${JOB_BASE_NAME}'. Please check, Below are the details.\n\n\n
-                Status: FAILED\n\n
-                Pipeline: ${JOB_NAME}\n\n
-                Build No: ${BUILD_NUMBER}\n\n
-                Build URL: ${BUILD_URL}\n\n\n"
+                body: "Hi,\n\n\nThe deployment has failed for the Jenkins pipeline '${JOB_BASE_NAME}'. Please check, Below are the details.\n\n\nStatus: FAILED\n\nPipeline: ${JOB_NAME}\n\nBuild No: ${BUILD_NUMBER}\n\nBuild URL: ${BUILD_URL}\n\n\n"
         }
     }
-}
+
