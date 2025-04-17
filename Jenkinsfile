@@ -52,7 +52,7 @@ pipeline {
                 }
             }
         }
-        stage('Sonar Quality Gate checks') {}
+        stage('Sonar Quality Gate checks'){
             steps {
                 script {
                   waitForQualityGate abortPipeline: true, credentialsId: 'sonar-new-2024'
@@ -116,4 +116,4 @@ pipeline {
                 body: "Hi,\n\n\nThe deployment has failed for the Jenkins pipeline '${JOB_BASE_NAME}'. Please check, Below are the details.\n\n\nStatus: FAILED\n\nPipeline: ${JOB_NAME}\n\nBuild No: ${BUILD_NUMBER}\n\nBuild URL: ${BUILD_URL}\n\n\n"
         }
     }
-
+}
