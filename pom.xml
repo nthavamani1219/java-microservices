@@ -18,8 +18,8 @@
 <sonar.host.url>https://sonar2.nagarro.com</sonar.host.url> <!-- Update if SonarQube is hosted elsewhere -->
 <sonar.login>sqa_50fd1180a9b3bab8a6763dfd338c6099e466af21</sonar.login> <!-- Replace with your token/username -->
 <sonar.password></sonar.password> <!-- Leave empty if using a token -->
-<sonar.projectKey>testing</sonar.projectKey> <!-- Unique key for your project -->
-<sonar.projectName>testing</sonar.projectName> <!-- Display name in SonarQube -->
+<sonar.projectKey>productcatalogue</sonar.projectKey> <!-- Unique key for your project -->
+<sonar.projectName>Product Catalogue</sonar.projectName> <!-- Display name in SonarQube -->
 </properties>
  
     <dependencies>
