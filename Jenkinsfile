@@ -47,15 +47,10 @@ pipeline {
             steps
             {
                 withSonarQubeEnv("${SONAR}")
-                {
-                    sh """
-                        mvn clean verify sonar:sonar
-                   
-                    """
+                  sh 'mvn clean verify sonar:sonar'
 
                 }
             }
-        }
         stage('Sonar Quality Gate checks'){
             steps {
                 script {
