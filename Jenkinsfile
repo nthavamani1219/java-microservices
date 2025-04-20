@@ -48,7 +48,7 @@ pipeline {
             {
                 withSonarQubeEnv("${SONAR}")
                  {
-                  sh 'mvn clean verify sonar:sonar'
+                  sh "${MAVEN_HOME}/bin/mvn sonar:sonar"
 
                 }
             }
