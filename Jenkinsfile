@@ -48,6 +48,11 @@ pipeline {
             {
                 withSonarQubeEnv("${SONAR}")
                  {
+                  sh '''
+                     echo "current working directory:$(pwd)"
+                     ls -la
+                     find . -name pom.xml
+                  '''   
                   sh "${MAVEN_HOME}/bin/mvn sonar:sonar"
 
                 }
@@ -55,7 +60,7 @@ pipeline {
         }      
         stage('Sonar Quality Gate checks'){
             steps {
-                script {
+                script {   
                   waitForQualityGate abortPipeline: true, credentialsId: 'sonar-new-2024'
                 }
             }
