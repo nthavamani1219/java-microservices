@@ -12,7 +12,7 @@ pipeline {
         // DOCKER_USER = thavamani0212
         // DOCKER_PASS = Thavamani126@
         DOCKER_SERVICE = 'Docker'
-        SERVICE_NAME = 'productcatalogue'
+        SERVICE_NAME = 'thetips4you/productcatalogue'
         SERVICE_PORT = '8020'
         SONAR = 'Sonar'
         SCANNER_HOME = tool 'SonarQube Scanner 4.7';
