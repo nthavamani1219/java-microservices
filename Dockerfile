@@ -3,7 +3,7 @@ WORKDIR /app
 
 COPY pom.xml .
 RUN mvn dependency:go-offline
-COPY src/main/java/uk/co/danielbryant/djshopping/productcatalogue ./src
+COPY productcatalogue/src/main/java/uk/co/danielbryant/djshopping/productcatalogue ./src
 
 RUN mvn clean package -DskipTests
 
