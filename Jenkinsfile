@@ -76,7 +76,7 @@ pipeline {
             steps {
                 sh '''
                     echo "Scanning image for vulnerabilities..."
-                    trivy image --severity CRITICAL,HIGH ${DOCKER_REGISTRY}/${SERVICE_NAME}:${BUILD_NUMBER}
+                    trivy image --severity CRITICAL,HIGH thavamani1219/productcatalogue
                 '''
             }
         }
