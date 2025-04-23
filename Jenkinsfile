@@ -68,7 +68,7 @@ pipeline {
       
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t ${DOCKER_REGISTRY}/${SERVICE_NAME}:latest ."
+                sh "docker build --no-cache -t docker.io/thavamani1219/productcatalogue ."
             }
         }
         
