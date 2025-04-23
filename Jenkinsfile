@@ -84,7 +84,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-registry-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh "docker login -u $DOCKER_USER -p $DOCKER_PASS ${DOCKER_REGISTRY}"
-                    sh "docker push ${DOCKER_REGISTRY}/${SERVICE_NAME}:${BUILD_NUMBER}"
+                    sh "docker push docker.io/thavamani1219/productcatalogue"
                 }
             }
         }
